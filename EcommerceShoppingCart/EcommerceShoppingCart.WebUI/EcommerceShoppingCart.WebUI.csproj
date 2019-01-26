@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +274,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,6 +292,24 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EcommerceShoppingCart.Core\EcommerceShoppingCart.Core.csproj">
+      <Project>{6cb95508-8023-4d56-ac0c-a85803f4356a}</Project>
+      <Name>EcommerceShoppingCart.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcommerceShoppingCart.DataAccess.InMemory\EcommerceShoppingCart.DataAccess.InMemory.csproj">
+      <Project>{e6274805-9d20-49c1-b352-f23e3fdb2abd}</Project>
+      <Name>EcommerceShoppingCart.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcommerceShoppingCart.DataAccess.SQL\EcommerceShoppingCart.DataAccess.SQL.csproj">
+      <Project>{47c9f6af-d8a8-4fc7-bc69-775296234c53}</Project>
+      <Name>EcommerceShoppingCart.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EcommerceShoppingCart.Services\EcommerceShoppingCart.Services.csproj">
+      <Project>{13cf3901-02f4-461f-a0a6-a473b32c08be}</Project>
+      <Name>EcommerceShoppingCart.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
