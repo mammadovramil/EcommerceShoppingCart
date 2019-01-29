@@ -1,4 +1,5 @@
-﻿using EcommerceShoppingCart.Core.Models;
+﻿using EcommerceShoppingCart.Core.Contracts;
+using EcommerceShoppingCart.Core.Models;
 using EcommerceShoppingCart.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace EcommerceShoppingCart.WebUI.Controllers
 {
     public class ProductCategoryManagerController : Controller
     {
-        InMemoryRepository<ProductCategory> context;
+        IRepository<ProductCategory> context;
 
-        public ProductCategoryManagerController()
+        public ProductCategoryManagerController(IRepository<ProductCategory> productCategoryContext)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            context = productCategoryContext;
         }
 
         // GET: ProductCategoryManager
