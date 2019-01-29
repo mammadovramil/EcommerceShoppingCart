@@ -1,4 +1,5 @@
 ﻿using EcommerceShoppingCart.Core.Models;
+using EcommerceShoppingCart.Core.ViewModels;
 using EcommerceShoppingCart.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace EcommerceShoppingCart.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         ProductRepository context;
+        ProductCategoryRepository productCategories;
 
         public ProductManagerController()
         {
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
 
         // GET: ProductManager
@@ -26,8 +29,11 @@ namespace EcommerceShoppingCart.WebUI.Controllers
 
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+            viewModel.Product = new Product();
+            viewModel.ProductCategories = productCategories.Collection();
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -48,6 +54,7 @@ namespace EcommerceShoppingCart.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
+
             Product product = context.Find(Id);
             if (product == null)
             {
@@ -55,7 +62,11 @@ namespace EcommerceShoppingCart.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;
+                viewModel.ProductCategories = productCategories.Collection();
+
+                return View(viewModel);
             }
         }
 
