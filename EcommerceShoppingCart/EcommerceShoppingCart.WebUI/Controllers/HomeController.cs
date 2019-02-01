@@ -1,5 +1,6 @@
 ﻿using EcommerceShoppingCart.Core.Contracts;
 using EcommerceShoppingCart.Core.Models;
+using EcommerceShoppingCart.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,25 @@ namespace EcommerceShoppingCart.WebUI.Controllers
             productCategoriesContext = productCategoryContext;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string Category = null)
         {
-            List<Product> products = productContext.Collection().ToList();
-            return View(products);
+            List<Product> products;
+            List<ProductCategory> categories = productCategoriesContext.Collection().ToList();
+
+            if (Category == null)
+            {
+                products = productContext.Collection().ToList();
+            }
+            else
+            {
+                products = productContext.Collection().Where(p => p.Category == Category).ToList();
+            }
+
+            ProductListViewModel productListViewModel = new ProductListViewModel();
+            productListViewModel.Products = products;
+            productListViewModel.ProductCategories = categories;
+
+            return View(productListViewModel);
         }
 
         public ActionResult Details(string Id)
